@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 8080;
 
-const user = process.env("MYSQL_ADDON_DB");
+user = process.env("MYSQL_ADDON_DB");
 
 app.get('/', (req, res) => {
   res.send(user);
