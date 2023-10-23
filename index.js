@@ -43,7 +43,7 @@ app.post("/comptes/add", (req, res) => {
     } = req.body
 
     con.query(
-        `INSERT INTO Comptes (mail, motDePasse, nom, prenom, id_ecole, id_classe) VALUES ('${mail}', '${mdp}', '${nom}','${prenom}', '${idEcole}', '');`,
+        `INSERT INTO Comptes (mail, motDePasse, nom, prenom, id_ecole, id_classe) VALUES ('${mail}', '${mdp}', '${nom}','${prenom}', '${idEcole}', '${1});`,
         function(error, result) {
             if(error) console.log(error)
             else {
