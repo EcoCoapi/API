@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 var con = mysql.createConnection({
     host : "bhwjlwblhuggr9xneide-mysql.services.clever-cloud.com",
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 //GET tout les documents
 
 app.get("/documents", (req, res) => {
-    con.query('select * from documents', function(error, rows, fields) {
+    con.query('SELECT * FROM Documents', function(error, rows, fields) {
         if(error) console.log(error)
 
         else {
