@@ -1,16 +1,17 @@
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = 8000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const mysql = require('mysql2');
+const mysql = require('mysql');
 
 var con = mysql.createConnection({
     host : "bhwjlwblhuggr9xneide-mysql.services.clever-cloud.com",
-    user : "xr5bVsmdPTl2athwykty",
-    password : "urhdxtrur2oaayng",
+    user : "urhdxtrur2oaayng",
+    password : "xr5bVsmdPTl2athwykty",
     database : "bhwjlwblhuggr9xneide",
+    port : 3306
 });
 
 
