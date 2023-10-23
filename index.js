@@ -30,6 +30,34 @@ app.get("/documents", (req, res) => {
     })
 })
 
+//Post un compte dans la bdd
+
+app.post("/comptes/add", (req, res) => {
+
+    const {
+        nom, 
+        prenom,
+        mail, 
+        mdp, 
+        idEcole
+    } = req.body
+
+    con.query(
+        `INSERT INTO Comptes (mail, motDePasse, nom, prenom, id_ecole, id_classe) VALUES ('${mail}', '${mdp}', '${nom}','${prenom}', '${idEcole}', '');`,
+        function(error, result) {
+            if(error) console.log(error)
+            else {
+            console.log(result)
+            res.send("Comptes ajoutés à la base")
+        }
+    }
+
+    
+    
+    )
+
+})
+
 
 app.listen(port, () => {
   console.log(`Le serveur est en écoute sur le port ${port}`);
