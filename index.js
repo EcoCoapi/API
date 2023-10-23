@@ -9,12 +9,12 @@ var con = mysql.createConnection({
     host : "bhwjlwblhuggr9xneide-mysql.services.clever-cloud.com",
     user : "xr5bVsmdPTl2athwykty",
     password : "urhdxtrur2oaayng",
-    database : "bhwjlwblhuggr9xneide"
-})
+    database : "bhwjlwblhuggr9xneide",
+});
 
 
 app.get('/', (req, res) => {
-  res.send(process.env("MYSQL_ADDON_DB"));
+  res.send("Bienvenur sur l'api");
 });
 
 //GET tout les documents
