@@ -8,15 +8,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-const mailgun = () => mg({
-    apiKey : "420964970bc230db2820cd806858f762-324e0bb2-467e2012",
-    domain : "sandbox0ed549d4865d4ce08e23c3e5170ec2b2.mailgun.org"
-})
-
 const mysql = require('mysql');
 const sgMail = require('@sendgrid/mail');
 const { error } = require('console');
-sgMail.setApiKey("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")
+
+const key = process.env["PATH"]
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 var con = mysql.createConnection({
     host : "bhwjlwblhuggr9xneide-mysql.services.clever-cloud.com",
     user : "urhdxtrur2oaayng",
@@ -119,5 +117,5 @@ app.post("/sendMailVerif", (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Le serveur est en écoute sur le port ${port}`);
+  console.log(`Key : ${key}`);
 });
