@@ -6,7 +6,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const mysql = require('mysql');
 const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey("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")
+sgMail.setApiKey("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")
 var con = mysql.createConnection({
     host : "bhwjlwblhuggr9xneide-mysql.services.clever-cloud.com",
     user : "urhdxtrur2oaayng",
