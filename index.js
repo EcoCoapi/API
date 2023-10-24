@@ -14,7 +14,7 @@ const { error } = require('console');
 
 const key = process.env["SENDGRID_API_KEY"]
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+sgMail.setApiKey(key)
 var con = mysql.createConnection({
     host : "bhwjlwblhuggr9xneide-mysql.services.clever-cloud.com",
     user : "urhdxtrur2oaayng",
