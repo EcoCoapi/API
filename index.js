@@ -16,7 +16,7 @@ const mailgun = () => mg({
 const mysql = require('mysql');
 const sgMail = require('@sendgrid/mail');
 const { error } = require('console');
-sgMail.setApiKey("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")
+sgMail.setApiKey("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")
 var con = mysql.createConnection({
     host : "bhwjlwblhuggr9xneide-mysql.services.clever-cloud.com",
     user : "urhdxtrur2oaayng",
@@ -72,6 +72,8 @@ app.post("/comptes/add", (req, res) => {
 app.post("/sendMailVerif", (req, res) => {
         
     const verifCode = Math.random().toString().slice(-6)
+
+    /*
     mailgun()
         .messages()
         .send(
@@ -90,9 +92,30 @@ app.post("/sendMailVerif", (req, res) => {
                     console.error(body)
                     res.send(verifCode)
                 }
+
             }
         )
+        
+        */
+    const msg = {
+        to: req.body.mail, // Change to your recipient
+        from: 'ecocoapi@gmail.com', // Change to your verified sender
+        subject: 'Sending with SendGrid is Fun',
+        text: `Your verif code : ${verifCode}`,
+        html: `<strong>Your verif code : ${verifCode}</strong>`,
+        }
+    
+        sgMail
+        .send(msg)
+        .then(() => {
+            console.log('Email sent')
+            res.send(verifCode)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
 
+    
 })
 
 app.listen(port, () => {
