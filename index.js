@@ -1,11 +1,21 @@
 const express = require('express');
 const app = express();
+const dotenv = require('dotenv')
+dotenv.config()
+const mg = require('mailgun-js')
 const port = 8080;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+const mailgun = () => mg({
+    apiKey : "420964970bc230db2820cd806858f762-324e0bb2-467e2012",
+    domain : "sandbox0ed549d4865d4ce08e23c3e5170ec2b2.mailgun.org"
+})
+
 const mysql = require('mysql');
-const sgMail = require('@sendgrid/mail')
+const sgMail = require('@sendgrid/mail');
+const { error } = require('console');
 sgMail.setApiKey("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")
 var con = mysql.createConnection({
     host : "bhwjlwblhuggr9xneide-mysql.services.clever-cloud.com",
@@ -62,26 +72,27 @@ app.post("/comptes/add", (req, res) => {
 app.post("/sendMailVerif", (req, res) => {
         
     const verifCode = Math.random().toString().slice(-6)
-    
-    const msg = {
-        to: req.body.mail, // Change to your recipient
-        from: 'ecocoapi@gmail.com', // Change to your verified sender
-        subject: 'Sending with SendGrid is Fun',
-        text: `Your verif code : ${verifCode}`,
-        html: `<strong>Your verif code : ${verifCode}</strong>`,
-        }
-    
-        sgMail
-        .send(msg)
-        .then(() => {
-            console.log('Email sent')
-            res.send(verifCode)
-        })
-        .catch((error) => {
-            console.error(error)
-        })
+    mailgun()
+        .messages()
+        .send(
+            {
+                from : "ecocoapi@gmail.com", 
+                to : req.body.mail, 
+                subject: 'Sending with SendGrid is Fun',
+                text: `Your verif code : ${verifCode}`,
+                html: `<strong>Your verif code : ${verifCode}</strong>`,
+            }, 
+            (error, body) =>  {
+                if(error) {
+                    console.log(error)
+                    res.send({message : "Error in send mail"})
+                }else {
+                    console.error(body)
+                    res.send(verifCode)
+                }
+            }
+        )
 
-    
 })
 
 app.listen(port, () => {
