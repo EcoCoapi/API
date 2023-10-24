@@ -5,6 +5,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const mysql = require('mysql');
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey("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")
 
 var con = mysql.createConnection({
     host : "bhwjlwblhuggr9xneide-mysql.services.clever-cloud.com",
@@ -47,17 +49,40 @@ app.post("/comptes/add", (req, res) => {
         function(error, result) {
             if(error) console.log(error)
             else {
-            console.log(result)
-            res.send("Comptes ajoutés à la base")
+                console.log(result)
+                res.send("Comptes ajoutés à la base")
+            }
         }
-    }
-
-    
-    
     )
-
 })
 
+// envoi du mail de verif
+
+
+
+app.post("/sendMailVerif", (req, res) => {
+        
+    const verifCode = Math.random().toString().slice(-6)
+    
+    const msg = {
+        to: req.body.mail, // Change to your recipient
+        from: 'ecocoapi@gmail.com', // Change to your verified sender
+        text: `Your verif code : ${verifCode}`,
+        html: `<strong>Your verif code : ${verifCode}</strong>`,
+        }
+    
+        sgMail
+        .send(msg)
+        .then(() => {
+            console.log('Email sent')
+            res.send(verifCode)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+
+    
+})
 
 app.listen(port, () => {
   console.log(`Le serveur est en écoute sur le port ${port}`);
