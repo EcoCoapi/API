@@ -15,7 +15,7 @@ var con = mysql.createConnection({
 
 
 app.get('/', (req, res) => {
-  res.send("Bienvenur sur l'api");
+  res.send("Bienvenur sur l'");
 });
 
 //GET tout les documents
