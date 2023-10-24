@@ -67,6 +67,7 @@ app.post("/sendMailVerif", (req, res) => {
     const msg = {
         to: req.body.mail, // Change to your recipient
         from: 'ecocoapi@gmail.com', // Change to your verified sender
+        subject: 'Sending with SendGrid is Fun',
         text: `Your verif code : ${verifCode}`,
         html: `<strong>Your verif code : ${verifCode}</strong>`,
         }
