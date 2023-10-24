@@ -96,7 +96,7 @@ app.post("/sendMailVerif", (req, res) => {
         
         */
     const msg = {
-        to: req.body.mail, // Change to your recipient
+        to: 'victorbats33@gmail.com', // Change to your recipient
         from: 'ecocoapi@gmail.com', // Change to your verified sender
         subject: 'Sending with SendGrid is Fun',
         text: `Your verif code : ${verifCode}`,
