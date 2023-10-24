@@ -12,7 +12,7 @@ const mysql = require('mysql');
 const sgMail = require('@sendgrid/mail');
 const { error } = require('console');
 
-const key = process.env["PATH"]
+const key = process.env["SENDGRID_API_KEY"]
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 var con = mysql.createConnection({
