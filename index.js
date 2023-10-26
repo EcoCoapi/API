@@ -39,7 +39,7 @@ app.get("/documents", (req, res) => {
     })
 })
 
-//Post un compte dans la bdd
+//Create un compte dans la bdd
 
 app.post("/comptes/add", (req, res) => {
 
@@ -62,6 +62,28 @@ app.post("/comptes/add", (req, res) => {
         }
     )
 })
+
+//Read un compte dans la bdd
+
+app.get("/comptes", (req, res) => {
+
+    const {mail} = req.body
+
+    con.query(
+        `SELECT * FROM Comptes WHERE mail = '${mail}';`, 
+        function(error, rows) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send(rows)
+            }
+        }
+    )
+})
+
+//Update à jour un compte dans la bdd
+
+//Delet un compte dans la bdd
 
 // envoi du mail de verif
 
