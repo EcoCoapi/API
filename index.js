@@ -83,7 +83,7 @@ app.get("/comptes", (req, res) => {
 
 //Update à jour un compte dans la bdddfe
 
-app.update('/comptes/update', (req, res) => {
+app.update('/comptes', (req, res) => {
 
     const {mail, nom, prenom, mdp, ecole} = req.body
 
