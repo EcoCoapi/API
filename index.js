@@ -74,7 +74,7 @@ app.get("/comptes", (req, res) => {
         function(error, rows) {
             if(error)console.log(error)
             else {
-                console.log(result)
+                console.log(rows)
                 res.send(rows)
             }
         }
