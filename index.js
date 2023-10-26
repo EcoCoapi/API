@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const mysql = require('mysql');
 const sgMail = require('@sendgrid/mail');
-const { error } = require('console');
+const { error } = require('console'); 
 
 const key = process.env["SENDGRID_API_KEY"]
 
@@ -24,7 +24,7 @@ var con = mysql.createConnection({
 
 
 app.get('/', (req, res) => {
-  res.send("Bienvenur sur l'");
+  res.send("Bienvenur sur l'api");
 });
 
 //GET tout les documents
@@ -82,6 +82,22 @@ app.get("/comptes", (req, res) => {
 })
 
 //Update à jour un compte dans la bdddfe
+
+app.update('/comptes/update', (req, res) => {
+
+    const {mail, nom, prenom, mdp, ecole} = req.body
+
+    con.query(
+        `UPDATE Comptes SET nom = '${nom}', prenom = '${prenom}', motDePasse = '${mdp}, id_ecole = '${ecole}' WHERE (mail = '${mail}');`,
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send("Compte mis à jour dans la base")
+            }
+        }
+    )
+})
  
 
 //Delete un compte dans la bdd
