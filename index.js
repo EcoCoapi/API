@@ -83,7 +83,27 @@ app.get("/comptes", (req, res) => {
 
 //Update à jour un compte dans la bdd
 
-//Delet un compte dans la bdd
+//Delete un compte dans la bdd
+
+app.delete("/comptes", (req, res) => {
+    
+    const {mail} = req.body
+    
+    con.query(
+        `DELETE FROM Comptes WHERE mail = '${mail}');`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Compte supprimé de la base")
+            }
+        }
+        
+
+
+    )
+
+})
 
 // envoi du mail de verif
 
