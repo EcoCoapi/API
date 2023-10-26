@@ -88,7 +88,7 @@ app.put('/comptes', (req, res) => {
     const {mail, nom, prenom, mdp} = req.body
 
     con.query(
-        `UPDATE Comptes SET nom = '${nom}', prenom = '${prenom}', motDePasse = '${mdp} WHERE (mail = ${mail});`,
+        `UPDATE Comptes SET nom = '${nom}', prenom = '${prenom}', motDePasse = '${mdp}' WHERE (mail = '${mail}');`,
         function(error, result) {
             if(error)console.log(error)
             else {
