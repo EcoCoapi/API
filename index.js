@@ -68,7 +68,7 @@ app.post("/comptes/add", (req, res) => {
 app.get("/comptes", (req, res) => {
 
     const {mail} = req.body
-    console.log(req.body)
+    console.log(req)
 
     con.query(
         `SELECT * FROM Comptes WHERE mail = '${mail}';`, 
