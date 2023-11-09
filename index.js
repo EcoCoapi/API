@@ -65,10 +65,10 @@ app.post("/comptes/add", (req, res) => {
 
 //Read un compte dans la bdd
 
-app.get("/comptes", (req, res) => {
+app.get("/comptes/:mail", (req, res) => {
 
-    const {mail} = req.body
-    console.log(req)
+    const mail = req.params.mail
+    console.log(req.params.mail)
 
     con.query(
         `SELECT * FROM Comptes WHERE mail = '${mail}';`, 
