@@ -99,7 +99,6 @@ app.put('/comptes', (req, res) => {
     )
 })
  
-
 //Delete un compte dans la bdd
 
 app.delete("/comptes", (req, res) => {
@@ -121,6 +120,8 @@ app.delete("/comptes", (req, res) => {
     )
 
 })
+
+
 
 // envoi du mail de verif
 
