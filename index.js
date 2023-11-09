@@ -72,11 +72,11 @@ app.get("/comptes/:mail", (req, res) => {
 
     con.query(
         `SELECT * FROM Comptes WHERE mail = '${mail}';`, 
-        function(error, rows) {
+        function(error, result) {
             if(error)console.log(error)
             else {
-                console.log(rows)
-                res.send(rows)
+                console.log(result)
+                res.send(result)
             }
         }
     )
