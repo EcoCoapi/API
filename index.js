@@ -68,6 +68,7 @@ app.post("/comptes/add", (req, res) => {
 app.get("/comptes", (req, res) => {
 
     const {mail} = req.body
+    console.log(req.body)
 
     con.query(
         `SELECT * FROM Comptes WHERE mail = '${mail}';`, 
@@ -121,6 +122,47 @@ app.delete("/comptes", (req, res) => {
 
 })
 
+//Create une école 
+
+app.post("/ecole", (req, res) => {
+
+    const {
+        nom, 
+        ville, 
+        departement,
+        region, 
+        nbClasse, 
+        nbBus, 
+        nbPisteCylclable, 
+        nbStationVelo
+    } = req.body
+
+    con.query(
+        `INSERT INTO Ecoles (nom, ville, departement, region, nbClasse, nbBus, nbPistecCyclable, nbStationVelo) VALUES ('${nom}', '${ville}', '${departement}', '${region}', '${nbClasse}', '${nbBus}', '${nbPisteCylclable}', '${nbStationVelo}');`,
+        function(error, result){
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send(idEcole)
+            }
+        }   
+    )
+
+})
+
+//Read une école
+
+app.get("/ecole", (req, res) => {
+
+    const {idEcole} = req.body
+
+    
+
+})
+
+//Update une école
+
+//Delete une école
 
 
 // envoi du mail de verif
