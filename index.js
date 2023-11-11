@@ -144,7 +144,7 @@ app.post("/ecole", (req, res) => {
             if(error)console.log(error)
             else {
                 console.log(result)
-                res.send(idEcole)
+                res.send("Ecole bien ajouté à la base")
             }
         }   
     )
@@ -153,9 +153,40 @@ app.post("/ecole", (req, res) => {
 
 //Read une école
 
+app.get("/ecole/:id", (req, res) => {
+
+    const id = req.params.id
+    console.log(req.params.mail)
+
+    con.query(
+        `SELECT * FROM Ecoles WHERE idEcole = '${id}';`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+    
+
+})
+
+// Read toutes les écoles
+
 app.get("/ecole", (req, res) => {
 
-    const {idEcole} = req.body
+    con.query(
+        `SELECT * FROM Ecoles;`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
 
     
 
