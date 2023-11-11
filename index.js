@@ -134,11 +134,12 @@ app.post("/ecole", (req, res) => {
         nbClasse, 
         nbBus, 
         nbPisteCylclable, 
-        nbStationVelo
+        nbStationVelo,
+        type
     } = req.body
 
     con.query(
-        `INSERT INTO Ecoles (nom, ville, departement, region, nbClasse, nbBus, nbPistecCyclable, nbStationVelo) VALUES ('${nom}', '${ville}', '${departement}', '${region}', '${nbClasse}', '${nbBus}', '${nbPisteCylclable}', '${nbStationVelo}');`,
+        `INSERT INTO Ecoles (nom, ville, departement, region, nbClasse, nbBus, nbPistecCyclable, nbStationVelo, type) VALUES ('${nom}', '${ville}', '${departement}', '${region}', '${nbClasse}', '${nbBus}', '${nbPisteCylclable}', '${nbStationVelo}', '${type}');`,
         function(error, result){
             if(error)console.log(error)
             else {
