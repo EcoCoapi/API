@@ -226,6 +226,45 @@ app.post("/classe", (req, res) => {
 
 })
 
+// Read 1 classe
+
+app.get("/classe/:id", (req, res) => {
+
+    const id = req.params.id
+    console.log(req.params.mail)
+
+    con.query(
+        `SELECT * FROM Classe WHERE idClasse = '${id}';`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+    
+
+})
+
+//Read toute les classe
+
+app.get("/classe", (req, res) => {
+
+    con.query(
+        "SELECT * FROM Classe;", 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+})
+
 // envoi du mail de verif
 
 
