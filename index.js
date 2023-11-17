@@ -265,10 +265,10 @@ app.get("/classe", (req, res) => {
 })
 //Read toute les classe d'un prof
 
-app.get("/classe/:mail", (req, res) => {
+app.post("/classe/prof", (req, res) => {
 
-    const mail = req.params.mail
-    console.log(mail)
+    const {mail} = req.body
+    console.log(req.body)
 
     con.query(
         `SELECT * FROM Classes WHERE mailProf = '${mail}';`, 
