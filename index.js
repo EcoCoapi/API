@@ -282,6 +282,25 @@ app.post("/classe/prof", (req, res) => {
     )
 
 })
+//Read toute les classe d'une école
+
+app.post("/classe/ecole", (req, res) => {
+
+    const {ecole} = req.body
+    console.log(req.body)
+
+    con.query(
+        `SELECT * FROM Classes WHERE idEcole = '${ecole}';`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+})
 
 // envoi du mail de verif
 
