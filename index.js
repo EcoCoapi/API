@@ -267,7 +267,8 @@ app.get("/classe", (req, res) => {
 
 app.get("/classe/prof", (req, res) => {
 
-    const {mail} = req.body
+    const mail = req.body.mailProf
+    console.log(mail)
 
     con.query(
         `SELECT * FROM Classes WHERE mailProf = '${mail}';`, 
