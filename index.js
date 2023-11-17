@@ -231,7 +231,6 @@ app.post("/classe", (req, res) => {
 app.get("/classe/:id", (req, res) => {
 
     const id = req.params.id
-    console.log(req.params.mail)
 
     con.query(
         `SELECT * FROM Classes WHERE idClasse = '${id}';`, 
@@ -254,6 +253,24 @@ app.get("/classe", (req, res) => {
 
     con.query(
         "SELECT * FROM Classes;", 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+})
+//Read toute les classe d'un prof
+
+app.get("/classe/:mail", (req, res) => {
+
+    const mail = req.params.mail
+
+    con.query(
+        `SELECT * FROM Classes WHERE mailProf = '${mail}';`, 
         function(error, result) {
             if(error)console.log(error)
             else {
