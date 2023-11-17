@@ -234,7 +234,7 @@ app.get("/classe/:id", (req, res) => {
     console.log(req.params.mail)
 
     con.query(
-        `SELECT * FROM Classe WHERE idClasse = '${id}';`, 
+        `SELECT * FROM Classes WHERE idClasse = '${id}';`, 
         function(error, result) {
             if(error)console.log(error)
             else {
@@ -253,7 +253,7 @@ app.get("/classe/:id", (req, res) => {
 app.get("/classe", (req, res) => {
 
     con.query(
-        "SELECT * FROM Classe;", 
+        "SELECT * FROM Classes;", 
         function(error, result) {
             if(error)console.log(error)
             else {
