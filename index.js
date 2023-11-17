@@ -142,8 +142,7 @@ app.post("/ecole", (req, res) => {
         `INSERT INTO Ecoles (nom, ville, departement, region, nbClasse, nbBus, nbPistecCyclable, nbStationVelo, type) VALUES ('${nom}', '${ville}', '${departement}', '${region}', '${nbClasse}', '${nbBus}', '${nbPisteCylclable}', '${nbStationVelo}', '${type}');`,
         function(error, result){
             if(error)console.log(error)
-            else {
-                console.log(result)
+            else {                console.log(result)
                 res.send("Ecole bien ajouté à la base")
             }
         }   
@@ -196,6 +195,36 @@ app.get("/ecole", (req, res) => {
 
 //Delete une école
 
+
+//Create une classe
+
+app.post("/classe", (req, res) => {
+
+    const {
+        idEcole, 
+        niveau, 
+        nbEleve, 
+        mailProf, 
+
+    } = req.body
+        
+    con.query(
+        `INSERT INTO Classes (idEcole, niveau, nbEleves, mailProf) VALUES ('${idEcole}', '${niveau}', '${nbEleve}', '${mailProf}');`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Classe bien ajotuté à la base")
+            }
+        }
+    )
+    
+
+    
+
+
+
+})
 
 // envoi du mail de verif
 
