@@ -201,11 +201,11 @@ app.put("/ecole/:id", (req, res) => {
 
     con.query(
         `UPDATE Classes SET nom = '${nom}, ville= '${ville}', departement = '${departement}', region = '${region}, nbBus = '${nbBus}', nbPistecCycblable = '${nbPisteCyclable}', nbStationVelo = '${nbStationVelo}', type = '${type}' WHERE ( idEcole = '${id}');`, 
-        function(errro, result){
+        function(error, result){
             if(error)console.log(error)
             else {
-            console.log(result)
-            res.send("Ecole mis à jour dans la base")
+                console.log(result)
+                res.send("Ecole mis à jour dans la base")
 
             }
         }
