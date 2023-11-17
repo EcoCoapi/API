@@ -221,7 +221,7 @@ app.post("/ecole/:id", (req, res) => {
     const id = req.params.id
 
     con.query(
-        `DELETE FROM Ecoles WHERE ( idEcole = '${id});`,
+        `DELETE FROM Ecoles WHERE ( idEcole = '${id}');`,
         function(error, result){
             if(error) console.log(error)
             else {
