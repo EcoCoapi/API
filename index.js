@@ -200,7 +200,7 @@ app.put("/ecole/:id", (req, res) => {
     const {nom, ville, departement, region, nbBus, nbPisteCyclable, nbStationVelo, type} = req.body
 
     con.query(
-        `UPDATE Classes SET nom = '${nom}, ville= '${ville}', departement = '${departement}', region = '${region}, nbBus = '${nbBus}', nbPistecCycblable = '${nbPisteCyclable}', nbStationVelo = '${nbStationVelo}', type = '${type}' WHERE ( idEcole = '${id}');`, 
+        `UPDATE Classes SET nom = '${nom}', ville= '${ville}', departement = '${departement}', region = '${region}', nbBus = '${nbBus}', nbPistecCycblable = '${nbPisteCyclable}', nbStationVelo = '${nbStationVelo}', type = '${type}' WHERE ( idEcole = '${id}');`, 
         function(error, result){
             if(error)console.log(error)
             else {
