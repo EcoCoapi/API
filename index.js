@@ -193,7 +193,50 @@ app.get("/ecole", (req, res) => {
 
 //Update une école
 
+app.put("/ecole/:id", (req, res) => {
+
+    const id = req.params.id
+
+    const {nom, ville, departement, region, nbBus, nbPisteCyclable, nbStationVelo, type} = req.body
+
+    con.query(
+        `UPDATE Classes SET nom = '${nom}, ville= '${ville}', departement = '${departement}', region = '${region}, nbBus = '${nbBus}', nbPistecCycblable = '${nbPisteCyclable}', nbStationVelo = '${nbStationVelo}', type = '${type}' WHERE ( idEcole = '${id}');`, 
+        function(errro, result){
+            if(error)console.log(error)
+            else {
+            console.log(result)
+            res.send("Ecole mis à jour dans la base")
+
+            }
+        }
+    )
+
+
+})
+
 //Delete une école
+
+app.post("/ecole/:id", (req, res) => {
+
+    const id = req.params.id
+
+    con.query(
+        `DELETE FROM Ecoles WHERE ( idEcole = '${id});`,
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Ecole supprimé de la base")
+            }
+        }
+
+    )
+
+
+
+
+    
+})
 
 
 //Create une classe
