@@ -27,6 +27,8 @@ app.get('/', (req, res) => {
   res.send("Bienvenur sur l'api");
 });
 
+/* ------------------------------------------------------------------------- DOCUMENT ---------------------------------------------------------- */
+
 //GET tout les documents
 
 app.get("/documents", (req, res) => {
@@ -39,6 +41,7 @@ app.get("/documents", (req, res) => {
     })
 })
 
+/* ------------------------------------------------------------------------- Compte ---------------------------------------------------------- */
 //Create un compte dans la bdd
 
 app.post("/comptes/add", (req, res) => {
@@ -121,6 +124,21 @@ app.delete("/comptes", (req, res) => {
     )
 
 })
+
+/* ------------------------------------------------------------------------- ECOLE ---------------------------------------------------------- */
+
+/*
+idEcole int AI PK 
+nom varchar(150) 
+ville varchar(150) 
+departement varchar(5) 
+region varchar(50) 
+nbClasse int 
+nbBus int 
+nbPistecCyclable int 
+nbStationVelo int 
+type int
+*/
 
 //Create une école 
 
@@ -238,9 +256,19 @@ app.post("/ecole/:id", (req, res) => {
     
 })
 
+/* ------------------------------------------------------------------------- CLASSE ---------------------------------------------------------- */
+
+
+/*
+idClasse int AI PK 
+idEcole int 
+niveau varchar(10) 
+nbEleves int 
+mailProf varchar(150) 
+idChallenge longtext 
+*/
 
 //Create une classe
-
 app.post("/classe", (req, res) => {
 
     const {
@@ -270,7 +298,6 @@ app.post("/classe", (req, res) => {
 })
 
 // Read 1 classe
-
 app.get("/classe/:id", (req, res) => {
 
     const id = req.params.id
@@ -291,7 +318,6 @@ app.get("/classe/:id", (req, res) => {
 })
 
 //Read toute les classe
-
 app.get("/classe", (req, res) => {
 
     con.query(
@@ -344,6 +370,236 @@ app.post("/classe/ecole", (req, res) => {
     )
 
 })
+
+//Update une classe
+app.put("/classe/:id", (req, res) => {
+
+    const id = req.params.id
+
+    const {niveau, nbEleves} = req.body
+
+
+    con.query(
+        `UPDATE Classes SET niveau = '${niveau}', nbEleves = '${nbEleves}' WHERE (idClasse = '${id}');`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send("Classe modifié dans la base")
+            }
+        }
+    )
+
+
+})
+
+//Delete une classe
+app.post('/challenges/:id', (req, res) => {
+
+    const id = req.params.id
+
+    con.query(
+        `DELETE FROM Classes WHERE idClasse = '${id}';`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send("Classe supprimés de la base !")
+            }
+        }
+    )
+
+
+})
+
+//Add Challenge à une classe 
+app.put("/classe/challenge/add/:id", (req, res) => {
+
+    const idClasse = req.params.id
+
+    const {idChallenge, listeChallenge} = req.body
+
+    let s = listeChallenge + `${idChallenge};`
+
+    con.query(
+        `UPDATE Classe idChallenge = '${s}' WHERE (idClasse = '${idClasse}');`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send("Challenge ajouté à la classe")
+            }
+        }
+    )
+
+
+})
+
+//Remove Challenge à une classe
+app.put("/classe/challenge/remove/:id", (req, res) => {
+
+    const idClasse = req.params.id
+
+    const {idChallenge, listeChallenge} = req.body
+
+    let s = listeChallenge.replace(`${idChallenge};`, "")
+
+    con.query(
+        `UPDATE Classe idChallenge = '${s}' WHERE (idClasse = '${idClasse}');`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send("Challenge supprimés à la classe")
+            }
+        }
+    )
+
+
+})
+
+/* ------------------------------------------------------------------------- CHALLENGE ---------------------------------------------------------- */
+
+
+// Read tout les challenes
+/*
+idChallenge int PK 
+nom varchar(200) 
+description longtext 
+dateDebut date 
+dateFin date 
+region varchar(100) 
+departement varchar(5) 
+ville varchar(200)
+*/
+
+// Read tout les challenes
+app.get('/challenges', (req, res) => {
+
+    con.query(
+        'SELECT * FROM Challenges;', 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+
+})
+
+// Read 1 challenge
+app.get('/challenges/:id', (req, res) => {
+
+    const id = req.params.id
+
+    con.query(
+        `SELECT * FROM Challenges WHERE idChallenge = '${id}';`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+
+})
+
+// Create 1 challenge
+app.post('/challenges', (req, res) => {
+
+    const {
+        nom, 
+        description, 
+        dateDebut, 
+        dateFin, 
+        region,
+        departement, 
+        ville
+    } = req.body
+
+    con.query(
+        `INSERT INTO Challenges (nom, description, dateDebut, dateFin, region, departement, ville) VALUES ('${nom}', '${description}', '${dateDebut}', '${dateFin}', '${region}', '${departement}', '${ville}');`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Challenge ajouté à la base !")
+            }
+        }
+    )
+
+
+})
+
+// Update 1 CHallenge
+app.put('/challenges/:id', (req, res) => {
+
+    const id = req.params.id
+
+    const {
+        nom, 
+        description, 
+        dateDebut, 
+        dateFin, 
+        region,
+        departement, 
+        ville
+    } = req.body
+
+    con.query(
+        `UPDATE Challenges SET nom = '${nom}', description = '${description}', dateDebut = '${dateDebut}', dateFin = '${dateFin}', region = '${region}', departement = '${departement}', ville = '${ville}' WHERE (idChallenge = '${id}');`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Challenge modifé à la base !")
+            }
+        }
+    )
+
+
+
+})
+
+//Delete 1 challenge
+app.post('/challenges/:id', (req, res) => {
+
+    const id = req.params.id
+
+    con.query(
+        `DELETE FROM Challenges WHERE idChallenge = '${id}';`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Challenge supprimés à la base !")
+            }
+        }
+    )
+
+})
+
+/* ------------------------------------------------------------------------- SEANCE CHALLENGE ---------------------------------------------------------- */
+
+//Create 1 Seance
+
+//Read all seance for one classe and one challenge
+
+//Update one seance
+
+//Delete one seance
+
+/* ------------------------------------------------------------------------- CHALLENGE ECO ---------------------------------------------------------- */
+
+//Create 1 Challenge Eco
+
+/* ------------------------------------------------------------------------- SEANCE CHALLENGE ECO ---------------------------------------------------------- */
+
 
 // envoi du mail de verif
 
