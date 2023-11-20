@@ -85,7 +85,7 @@ app.get("/comptes/:mail", (req, res) => {
     )
 })
 
-//Update à jour un compte dans la bdddfe
+//Update un compte dans la bdddfe
 
 app.put('/comptes', (req, res) => {
 
