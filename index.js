@@ -422,7 +422,7 @@ app.put("/classe/challenge/add/:id", (req, res) => {
     let s = listeChallenge + `${idChallenge}|`
 
     con.query(
-        `UPDATE Classe idChallenge = '${s}' WHERE (idClasse = '${idClasse}');`, 
+        `UPDATE Classes SET idChallenge = '${s}' WHERE (idClasse = '${idClasse}');`, 
         function(error, result) {
             if(error)console.log(error)
             else {
@@ -445,7 +445,7 @@ app.put("/classe/challenge/remove/:id", (req, res) => {
     let s = listeChallenge.replace(`${idChallenge}|`, "")
 
     con.query(
-        `UPDATE Classe idChallenge = '${s}' WHERE (idClasse = '${idClasse}');`, 
+        `UPDATE Classes SET idChallenge = '${s}' WHERE (idClasse = '${idClasse}');`, 
         function(error, result) {
             if(error)console.log(error)
             else {
