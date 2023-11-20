@@ -419,7 +419,7 @@ app.put("/classe/challenge/add/:id", (req, res) => {
 
     const {idChallenge, listeChallenge} = req.body
 
-    let s = listeChallenge + `${idChallenge};`
+    let s = listeChallenge + `${idChallenge}|`
 
     con.query(
         `UPDATE Classe idChallenge = '${s}' WHERE (idClasse = '${idClasse}');`, 
@@ -442,7 +442,7 @@ app.put("/classe/challenge/remove/:id", (req, res) => {
 
     const {idChallenge, listeChallenge} = req.body
 
-    let s = listeChallenge.replace(`${idChallenge};`, "")
+    let s = listeChallenge.replace(`${idChallenge}|`, "")
 
     con.query(
         `UPDATE Classe idChallenge = '${s}' WHERE (idClasse = '${idClasse}');`, 
