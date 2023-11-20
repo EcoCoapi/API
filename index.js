@@ -394,7 +394,7 @@ app.put("/classe/:id", (req, res) => {
 })
 
 //Delete une classe
-app.post('/challenges/:id', (req, res) => {
+app.post('/classe/:id', (req, res) => {
 
     const id = req.params.id
 
