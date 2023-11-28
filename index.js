@@ -522,7 +522,7 @@ app.post('/challenges', (req, res) => {
         departement, 
         ville
     } = req.body
-
+ilno
     con.query(
         `INSERT INTO Challenges (nom, description, dateDebut, dateFin, region, departement, ville) VALUES ('${nom}', '${description}', '${dateDebut}', '${dateFin}', '${region}', '${departement}', '${ville}');`, 
         function(error, result){
@@ -614,6 +614,21 @@ app.post("/groupe", (req, res) => {
 //Get 1 Groupe
 
 //Get All groupe
+
+app.get("/groupe", (req, res) => {
+
+    con.query(
+        `SELECT * FROM Groupe;`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+})
 
 
 /* ------------------------------------------------------------------------- SEANCE CHALLENGE ---------------------------------------------------------- */
