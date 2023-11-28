@@ -209,6 +209,7 @@ app.get("/ecole", (req, res) => {
 
 })
 
+
 //Update une école
 
 app.put("/ecole/:id", (req, res) => {
@@ -583,6 +584,37 @@ app.post('/challenges/:id', (req, res) => {
     )
 
 })
+
+/* ------------------------------------------------------------------------- Groupe---------------------------------------------------------- */
+
+//Create Groupe
+
+app.post("/groupe", (req, res) => {
+
+    const {classe, nom, isPublic, motDePasse} = req.body
+
+    con.query(
+        `INSERT INTO Groupes (listeClasse, nom, isPublic, motDePasse) VALUES ('${classe}', '${nom}', '${isPublic}', '${motDePasse}');`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Groupe ajouté à la base !")
+            }
+        }
+    )
+
+
+})
+
+//Delete Groupe
+
+//Update Info Groupe
+
+//Get 1 Groupe
+
+//Get All groupe
+
 
 /* ------------------------------------------------------------------------- SEANCE CHALLENGE ---------------------------------------------------------- */
 
