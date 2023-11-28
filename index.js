@@ -594,7 +594,7 @@ app.post("/groupe", (req, res) => {
     const {classe, nom, isPublic, motDePasse} = req.body
 
     con.query(
-        `INSERT INTO Groupes (listeClasse, nom, isPublic, motDePasse) VALUES ('${classe}', '${nom}', '${isPublic}', '${motDePasse}');`, 
+        `INSERT INTO Groupe (listeClasse, nom, isPublic, motDePasse) VALUES ('${classe}', '${nom}', '${isPublic}', '${motDePasse}');`, 
         function(error, result){
             if(error) console.log(error)
             else {
