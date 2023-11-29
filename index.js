@@ -635,11 +635,12 @@ app.put('/groupe/:id', (req, res) => {
         nom, 
         listeClasse, 
         isPublic, 
+        motDePasse,
         
     } = req.body
 
     con.query(
-        `UPDATE Challenges SET nom = '${nom}', listeClasse = '${listeClasse}', isPublic = '${isPublic}');`, 
+        `UPDATE Groupe SET nom = '${nom}', listeClasse = '${listeClasse}', isPublic = '${isPublic}');`,motDePasse = '${motDePasse}'  WHERE (idGroupe= '${id}');`, 
         function(error, result){
             if(error) console.log(error)
             else {
