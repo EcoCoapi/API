@@ -627,6 +627,32 @@ app.post('/groupe/:id', (req, res) => {
 })
 
 //Update Info Groupe
+app.put('/groupe/:id', (req, res) => {
+
+    const id = req.params.id
+
+    const {
+        nom, 
+        listeClasse, 
+        isPublic, 
+        
+    } = req.body
+
+    con.query(
+        `UPDATE Challenges SET nom = '${nom}', listeClasse = '${listeClasse}', isPublic = '${isPublic}');`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Groupe modifié a la base !")
+            }
+        }
+    )
+
+
+
+})
+
 
 //Get 1 Groupe
 app.get('/groupe/:id', (req, res) => {
