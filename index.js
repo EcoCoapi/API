@@ -690,6 +690,28 @@ app.get("/groupe", (req, res) => {
     )
 
 })
+//Ajouter une classe a un groupe 
+app.put("/groupe/classe/add/:id", (req, res) => {
+
+    const idGroupe= req.params.id
+
+    const {idClasse, listeClasse} = req.body
+
+    let s = listeClasse + `${idClasse}|`
+
+    con.query(
+        `UPDATE Groupe SET listeClasse = '${s}' WHERE (idGroupe = '${idGroupe}');`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send("Classe  ajouté à un groupe")
+            }
+        }
+    )
+
+
+})
 
 
 /* ------------------------------------------------------------------------- SEANCE CHALLENGE ---------------------------------------------------------- */
