@@ -708,6 +708,28 @@ app.put("/groupe/classe/add/:id", (req, res) => {
         }
     );
 });
+//retirer une classe a un groupe
+app.put("/groupe/classe/remove/:id", (req, res) => {
+
+    const idGroupe = req.params.id
+
+    const {idClasse, listeClasse} = req.body
+
+    let s = listeClasse.replace(`${idClasse}|`, "")
+
+    con.query(
+        `UPDATE Groupe SET ListeClasse = '${s}' WHERE (idGroupe = '${idGroupe}');`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send("Classe supprimés du groupe")
+            }
+        }
+    )
+
+
+})
 
 
 
