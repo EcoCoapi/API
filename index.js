@@ -627,7 +627,7 @@ app.post('/groupe/:id', (req, res) => {
 })
 
 //Update Info Groupe
-app.put('/challenges/:id', (req, res) => {
+app.put('/groupe/:id', (req, res) => {
 
     const id = req.params.id
 
