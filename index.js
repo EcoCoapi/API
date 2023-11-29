@@ -618,7 +618,7 @@ app.post('/groupe/:id', (req, res) => {
             if(error)console.log(error)
             else {
                 console.log(result)
-                res.send("Classe supprimés de la base !")
+                res.send("Groupe supprimés de la base !")
             }
         }
     )
