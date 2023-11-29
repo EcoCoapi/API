@@ -692,26 +692,23 @@ app.get("/groupe", (req, res) => {
 })
 //Ajouter une classe a un groupe 
 app.put("/groupe/classe/add/:id", (req, res) => {
+    const idGroupe = req.params.id;
+    const { idClasse, listeClasse } = req.body; // Correction: Utiliser listeClasse
 
-    const idGroupe= req.params.id
-
-    const {idClasse,listeCLasse} = req.body
-
-    let s = listeClasse + `${idClasse}|`
+    let s = listeClasse + `${idClasse}|`;
 
     con.query(
-        `UPDATE Groupe SET listeClasse = '${s}' WHERE (idGroupe = '${idGroupe}');`, 
-        function(error, result) {
-            if(error)console.log(error)
+        `UPDATE Groupe SET listeClasse = '${s}' WHERE (idGroupe = '${idGroupe}');`,
+        function (error, result) {
+            if (error) console.log(error);
             else {
-                console.log(result)
-                res.send("Classe  ajouté au groupe")
+                console.log(result);
+                res.send("Classe ajoutée au groupe"); // Correction: Utiliser "Classe" au lieu de "Classe "
             }
         }
-    )
+    );
+});
 
-
-})
 
 
 /* ------------------------------------------------------------------------- SEANCE CHALLENGE ---------------------------------------------------------- */
