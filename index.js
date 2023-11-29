@@ -418,7 +418,7 @@ app.put("/classe/challenge/add/:id", (req, res) => {
 
     const idClasse = req.params.id
 
-    const {idChallenge, listeChallenge} = req.body
+    const {idChallenge, listeClasse} = req.body
 
     let s = listeChallenge + `${idChallenge}|`
 
