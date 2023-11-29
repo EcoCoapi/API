@@ -699,10 +699,10 @@ app.get("/groupe", (req, res) => {
 
 app.post("/seance", (req, res) => {
 
-    const {idSeance,idChallenge, idClasse, date,duree,points} = req.body
+    const {idChallenge, idClasse, date,duree,points} = req.body
 
     con.query(
-        `INSERT INTO Seance (idSeance,idChallenge, idClasse, date,duree,points) VALUES ('${idSeance}', '${idChallenge}', '${idClasse}', '${date}','${duree}','${points}');`, 
+        `INSERT INTO Seance (idChallenge, idClasse, date,duree,points) VALUES ( '${idChallenge}', '${idClasse}', '${date}','${duree}','${points}');`, 
         function(error, result){
             if(error) console.log(error)
             else {
