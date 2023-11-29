@@ -608,6 +608,23 @@ app.post("/groupe", (req, res) => {
 })
 
 //Delete Groupe
+app.post('/groupe/:id', (req, res) => {
+
+    const id = req.params.id
+
+    con.query(
+        `DELETE FROM groupe  WHERE idGroupe = '${id}';`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send("Classe supprimés de la base !")
+            }
+        }
+    )
+
+
+})
 
 //Update Info Groupe
 
