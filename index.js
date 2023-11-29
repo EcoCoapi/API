@@ -702,7 +702,7 @@ app.post("/seance", (req, res) => {
     const {idSeance,idChallenge, idClasse, date,duree,points} = req.body
 
     con.query(
-        `INSERT INTO Groupe (idSeance,idChallenge, idClasse, date,duree,points) VALUES ('${idSeance}', '${idChallenge}', '${idClasse}', '${date}','${duree}','${points}');`, 
+        `INSERT INTO Seance (idSeance,idChallenge, idClasse, date,duree,points) VALUES ('${idSeance}', '${idChallenge}', '${idClasse}', '${date}','${duree}','${points}');`, 
         function(error, result){
             if(error) console.log(error)
             else {
