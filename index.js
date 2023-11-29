@@ -705,7 +705,7 @@ app.put("/groupe/classe/add/:id", (req, res) => {
             if(error)console.log(error)
             else {
                 console.log(result)
-                res.send("Classe  ajouté à un groupe")
+                res.send("Classe  ajouté au groupe")
             }
         }
     )
