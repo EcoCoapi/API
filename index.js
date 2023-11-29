@@ -629,6 +629,24 @@ app.post('/groupe/:id', (req, res) => {
 //Update Info Groupe
 
 //Get 1 Groupe
+app.get('/groupe/:id', (req, res) => {
+
+    const id = req.params.id
+
+    con.query(
+        `SELECT * FROM Groupe WHERE idGroupe = '${id}';`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+
+})
+
 
 //Get All groupe
 
