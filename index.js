@@ -696,6 +696,26 @@ app.get("/groupe", (req, res) => {
 
 //Create 1 Seance
 
+
+app.post("/seance", (req, res) => {
+
+    const {idSeance,idChallenge, idClasse, date,duree,points} = req.body
+
+    con.query(
+        `INSERT INTO Groupe (idSeance,idChallenge, idClasse, date,duree,points) VALUES ('${idSeance}', '${idChallenge}', '${idClasse}', '${date}','${duree}','${points}');`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Séance ajouté à la base !")
+            }
+        }
+    )
+
+
+})
+
+
 //Read all seance for one classe and one challenge
 
 //Update one seance
