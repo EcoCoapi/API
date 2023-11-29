@@ -635,7 +635,7 @@ app.put('/groupe/:id', (req, res) => {
         nom, 
         listeClasse, 
         isPublic, 
-        motDePasse,
+        motDePasse
         
     } = req.body
 
