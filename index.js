@@ -418,7 +418,7 @@ app.put("/classe/challenge/add/:id", (req, res) => {
 
     const idClasse = req.params.id
 
-    const {idChallenge, listeClasse} = req.body
+    const {idChallenge, listeChallenge} = req.body
 
     let s = listeChallenge + `${idChallenge}|`
 
@@ -587,6 +587,14 @@ app.post('/challenges/:id', (req, res) => {
 
 /* ------------------------------------------------------------------------- Groupe---------------------------------------------------------- */
 
+/*
+idGroupe int AI PK 
+listeClasse longtext 
+nom varchar(150) 
+isPublic tinyint 
+motDePasse longtext
+*/
+
 //Create Groupe
 
 app.post("/groupe", (req, res) => {
@@ -695,7 +703,7 @@ app.put("/groupe/classe/add/:id", (req, res) => {
 
     const idGroupe= req.params.id
 
-    const {idClasse,listeCLasse} = req.body
+    const {idClasse, listeClasse} = req.body
 
     let s = listeClasse + `${idClasse}|`
 
@@ -706,6 +714,29 @@ app.put("/groupe/classe/add/:id", (req, res) => {
             else {
                 console.log(result)
                 res.send("Classe  ajouté au groupe")
+            }
+        }
+    )
+
+
+})
+
+//Retirer une classe a un groupe 
+app.put("/groupe/classe/remove/:id", (req, res) => {
+
+    const idGroupe= req.params.id
+
+    const {idClasse, listeClasse} = req.body
+
+    let s = listeClasse.replace(`${idClasse}|`, "")
+
+    con.query(
+        `UPDATE Groupe SET listeClasse = '${s}' WHERE (idGroupe = '${idGroupe}');`, 
+        function(error, result) {
+            if(error)console.log(error)
+            else {
+                console.log(result)
+                res.send("Classe supprimé du groupe")
             }
         }
     )
