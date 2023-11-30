@@ -736,7 +736,7 @@ app.put("/groupe/classe/remove/:id", (req, res) => {
             if(error)console.log(error)
             else {
                 console.log(result)
-                res.send("Classe supprimé du groupe")
+                res.send("Classe supprimé au groupe")
             }
         }
     )
