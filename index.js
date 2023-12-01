@@ -814,7 +814,7 @@ app.post("/seance/eco/add", (req, res) => {
     } = req.body
 
     con.query(
-        `INSERT INTO SeanceEco (date, idGroupe, nbVelo, nbTC, nbPieton, nbVoiture, nbCoVoiture, points, nbTrot) VALUES ( '${date}', '${idGroupe}', '${nbVelo}', '${nbTc}', '${nbPieton}', '${nbVoiture}', '${nbCoVoiture}', '${points}', '${nbTrot}');`,
+        `INSERT INTO SeanceEco (date, idGroupe, nbVelo, nbTC, nbPieton, nbVoiture, nbCoVoiture, points, idClasse, nbTrot) VALUES ( '${date}', '${idGroupe}', '${nbVelo}', '${nbTc}', '${nbPieton}', '${nbVoiture}', '${nbCoVoiture}', '${points}', '${idClasse}', '${nbTrot}');`,
         function(error, result){
             if(error) console.log(error)
             else {
