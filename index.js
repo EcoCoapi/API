@@ -827,6 +827,27 @@ app.post("/seance/eco/add", (req, res) => {
 
 })
 
+//Get toutes les séances d'une classe
+
+
+app.get("/seance/eco/:idGroupe/:idClasse", (req, res) => {
+
+    const idClasse = req.params.idClasse
+    const idGroupe = req.params.idGroupe
+ 
+    con.query(
+        `SELECT * FROM SeanceEco WHERE idClasse = '${idClasse}' && idGroupe = '${idGroupe}';`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+})
+
 
 /*------------------------------------------------------------------------AUTRE---------------------------------------------*/
 
