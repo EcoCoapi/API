@@ -55,7 +55,7 @@ app.post("/comptes/add", (req, res) => {
     } = req.body
 
     con.query(
-        `INSERT INTO Comptes (mail, motDePasse, nom, prenom, id_ecole, id_classe) VALUES ('${mail}', '${mdp}', '${nom}','${prenom}', '${idEcole}', '${1}');`,
+        `INSERT INTO Comptes (mail, motDePasse, nom, prenom, id_ecole) VALUES ('${mail}', '${mdp}', '${nom}','${prenom}', '${idEcole}');`,
         function(error, result) {
             if(error) console.log(error)
             else {
@@ -781,6 +781,11 @@ app.post("/seance", (req, res) => {
 
 /* ------------------------------------------------------------------------- SEANCE CHALLENGE ECO ---------------------------------------------------------- */
 
+//Create 1 Seance eco
+
+
+
+/*------------------------------------------------------------------------AUTRE---------------------------------------------*/
 
 // envoi du mail de verif
 
