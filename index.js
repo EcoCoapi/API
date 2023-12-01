@@ -781,8 +781,51 @@ app.post("/seance", (req, res) => {
 
 /* ------------------------------------------------------------------------- SEANCE CHALLENGE ECO ---------------------------------------------------------- */
 
+
+/*
+idSeanceEco int AI PK 
+date date 
+idGroupe int 
+nbVelo int 
+nbTC int 
+nbPieton int 
+nbVoiture int 
+points int 
+nbCoVoiture int 
+idClasse int
+*/
 //Create 1 Seance eco
 
+app.post("/seance/eco/add", (req, res) => {
+
+    const {
+        date, 
+        idGroupe,
+        idClasse,
+        nbVelo,
+        nbTc, 
+        nbPieton,
+        nbVoiture, 
+        nbCoVoiture,
+        nbTrot,
+        points
+        
+
+    } = req.body
+
+    con.query(
+        `INSERT INTO SeanceEco (date, idGroupe, nbVelo, nbTC, nbPieton, nbVoiture, nbCoVoiture, points, nbTrot) VALUES ( '${date}', '${idGroupe}', '${nbVelo}', '${nbTc}', '${nbPieton}', '${nbVoiture}', '${nbCoVoiture}', '${points}', '${nbTrot}');`,
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Séance ECO ajouté à la base !")
+            }
+        }
+    )
+
+
+})
 
 
 /*------------------------------------------------------------------------AUTRE---------------------------------------------*/
