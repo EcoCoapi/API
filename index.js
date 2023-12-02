@@ -794,6 +794,7 @@ points int
 nbCoVoiture int 
 idClasse int
 */
+
 //Create 1 Seance eco
 
 app.post("/seance/eco/add", (req, res) => {
@@ -829,7 +830,6 @@ app.post("/seance/eco/add", (req, res) => {
 
 //Get toutes les séances d'une classe
 
-
 app.get("/seance/eco/:idGroupe/:idClasse", (req, res) => {
 
     const idClasse = req.params.idClasse
@@ -842,6 +842,67 @@ app.get("/seance/eco/:idGroupe/:idClasse", (req, res) => {
             else {
                 console.log(result)
                 res.send(result)
+            }
+        }
+    )
+
+})
+//Supprimer une séance éco
+
+app.get("/seance/eco/remove/:id", (req, res) => {
+
+    const idClasse = req.params.id
+
+ 
+    con.query(
+        `DELETE FROM SeanceEco WHERE idSeanceEco = '${id}';`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send(result)
+            }
+        }
+    )
+
+})
+
+//Update 1 Seance Eco
+
+app.put("/seance/eco/update/:idGroupe/:idClasse", (req, res) => {
+
+    const idClasse = req.params.idClasse
+    const idGroupe = req.params.idGroupe
+    
+    const {
+        date, 
+        nbVelo,
+        nbTc, 
+        nbPieton,
+        nbVoiture, 
+        nbCoVoiture,
+        nbTrot,
+        points
+        
+
+    } = req.body
+
+    con.query(
+        `UPDATE SeanceEco SET 
+        date = '${date}',
+        nbVelo = ${nbVelo}', 
+        nbTC = '${nbTc}', 
+        nbTrot = '${nbTrot}', 
+        nbPieton = '${nbPieton}', 
+        nbVoiture = '${nbVoiture}', 
+        nbCoVoiture = '${nbCoVoiture}', 
+        points = '${points}'
+        WHERE (idGroupe = '${idGroupe} && idClasse = '${idClasse}');`, 
+        function(error, result){
+            if(error) console.log(error)
+            else {
+                console.log(result)
+                res.send("Seance eco modifié dans la base")
             }
         }
     )
