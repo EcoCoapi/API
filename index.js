@@ -851,7 +851,7 @@ app.get("/seance/eco/:idGroupe/:idClasse", (req, res) => {
 
 app.post("/seance/eco/remove/:id", (req, res) => {
 
-    const idClasse = req.params.id
+    const id = req.params.id
 
  
     con.query(
@@ -869,10 +869,9 @@ app.post("/seance/eco/remove/:id", (req, res) => {
 
 //Update 1 Seance Eco
 
-app.put("/seance/eco/update/:idGroupe/:idClasse", (req, res) => {
+app.put("/seance/eco/update/:id", (req, res) => {
 
-    const idClasse = req.params.idClasse
-    const idGroupe = req.params.idGroupe
+    const id = req.params.id
     
     const {
         date, 
@@ -888,7 +887,7 @@ app.put("/seance/eco/update/:idGroupe/:idClasse", (req, res) => {
     } = req.body
 
     con.query(
-        `UPDATE SeanceEco SET date = '${date.split("T")[0]}',nbVelo = '${nbVelo}', nbTC = '${nbTc}', nbTrot = '${nbTrot}', nbPieton = '${nbPieton}', nbVoiture = '${nbVoiture}', nbCoVoiture = '${nbCoVoiture}', points = '${points}' WHERE (idGroupe = '${idGroupe}' && idClasse = '${idClasse}');`, 
+        `UPDATE SeanceEco SET date = '${date.split("T")[0]}',nbVelo = '${nbVelo}', nbTC = '${nbTc}', nbTrot = '${nbTrot}', nbPieton = '${nbPieton}', nbVoiture = '${nbVoiture}', nbCoVoiture = '${nbCoVoiture}', points = '${points}' WHERE (idSeanceEco = '${id}');`, 
         function(error, result){
             if(error) console.log(error)
             else {
