@@ -849,7 +849,7 @@ app.get("/seance/eco/:idGroupe/:idClasse", (req, res) => {
 })
 //Supprimer une séance éco
 
-app.get("/seance/eco/remove/:id", (req, res) => {
+app.post("/seance/eco/remove/:id", (req, res) => {
 
     const idClasse = req.params.id
 
@@ -888,16 +888,7 @@ app.put("/seance/eco/update/:idGroupe/:idClasse", (req, res) => {
     } = req.body
 
     con.query(
-        `UPDATE SeanceEco SET 
-        date = '${date}',
-        nbVelo = ${nbVelo}', 
-        nbTC = '${nbTc}', 
-        nbTrot = '${nbTrot}', 
-        nbPieton = '${nbPieton}', 
-        nbVoiture = '${nbVoiture}', 
-        nbCoVoiture = '${nbCoVoiture}', 
-        points = '${points}'
-        WHERE (idGroupe = '${idGroupe} && idClasse = '${idClasse}');`, 
+        `UPDATE SeanceEco SET date = '${date}',nbVelo = ${nbVelo}', nbTC = '${nbTc}', nbTrot = '${nbTrot}', nbPieton = '${nbPieton}', nbVoiture = '${nbVoiture}', nbCoVoiture = '${nbCoVoiture}', points = '${points}' WHERE (idGroupe = '${idGroupe} && idClasse = '${idClasse}');`, 
         function(error, result){
             if(error) console.log(error)
             else {
